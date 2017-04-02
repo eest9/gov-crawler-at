@@ -4,11 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GovCrawler - Startseite</title>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    
+    <script type="text/javascript" src="lib/base.js"></script>
+    <script type="text/javascript" src="lib/jFeed.js"></script>
+
   </head>
   <body>
     <h1>Was ist heute in Regierung und Parlament passiert?</h1>
-    <script src="/council-of-ministers-reports-front.js"></script>
+    <div class="fronttable" id="council-of-ministers-reports"><script src="council-of-ministers-reports-front.js"></script></div>
+    <div class="fronttable" id="consultation-bills"><script src="consultation-bills-front.js"></script></div>
+    <div class="fronttable" id="national-assembly-daily-updates"><script src="national-assembly-daily-updates-front.js"></script></div>
   </body>
 </html>
