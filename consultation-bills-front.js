@@ -4,6 +4,8 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
     var item = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
     var pdf;
     for (var i = 0; i < item.length; i++) {
+
+      //get the attached PDF Files
       pdf = "";
       if ($.isArray(item[i].Data.Dokumentliste.ContentReference)) {
         for (var x = 0; x < item[i].Data.Dokumentliste.ContentReference.length; x++) {
@@ -14,9 +16,11 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
       } else {
           pdf = "<a href='" + item[i].Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "'>" + item[i].Data.Dokumentliste.ContentReference.Name + " [PDF]</a><br/>";
       }
+
+      //give all the relevant data about the consultation bills back
       data1 = data1
         + "<li class='list-group-item'>"
-        + "<h1 class=panel>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h1>"
+        + "<h1 class=list-title>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h1>"
         + "<p>"
         + item[i].Data.Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
         + item[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
