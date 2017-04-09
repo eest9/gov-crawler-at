@@ -2,33 +2,32 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
   $($( "#consultation-bills" ).html( function () {
     var data1 = "";
     var item = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
+    var pdf;
     for (var i = 0; i < item.length; i++) {
-      //for (var ii = 0; ii < item[i].Data.Dokumentliste.ContentReference.length; ii++) {
-        var pdf = "<br/><a href='" + item[i].Data.Dokumentliste.ContentReference[0].Urls.ContentUrl[2].Url + "'>Hauptdokument [PDF]</a>";
-      //}
+      pdf = "";
+      if ($.isArray(item[i].Data.Dokumentliste.ContentReference)) {
+        for (var x = 0; x < item[i].Data.Dokumentliste.ContentReference.length; x++) {
+          if (item[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2]) {
+              pdf = pdf + "<a href='" + item[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + item[i].Data.Dokumentliste.ContentReference[x].Name + " [PDF]</a><br/>";
+          }
+        }
+      } else {
+          pdf = "<a href='" + item[i].Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "'>" + item[i].Data.Dokumentliste.ContentReference.Name + " [PDF]</a><br/>";
+      }
       data1 = data1
         + "<li class='list-group-item'>"
-        + "<h3>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h3>"
-        + item[i].Data.Metadaten.Bundesgesetzblaetter.Titel
+        + "<h1 class=panel>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h1>"
+        + "<p>"
+        + item[i].Data.Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
+        + item[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
+        + "</p><p>"
+        + "Begin: " + item[i].Data.Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist + "<br/>"
+        + "Ende: " + item[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EndeBegutachtungsfrist
+        + "</p><p>"
         + pdf
+        + "</p>"
         + "</li>";
     }
     return data1;
   }));
 });
-
-//if ($.isArray(item.Data.Dokumentliste.ContentReference)) {
-//  for (var i = 0, l = item.Data.Dokumentliste.ContentReference.length; i < l; i++) {
-//    var o = item.Data.Dokumentliste.ContentReference[i];
-//    if  (o.ContentType === "MainDocument") {
-//          $urlHtml= o.Urls.ContentUrl[1].Url;
-//          $urlPdf = o.Urls.ContentUrl[2].Url;
-//          $urlDoc = o.Urls.ContentUrl[3].Url;
-//          break;
-//    }
-//  }
-//} else {
-//  $urlHtml= item.Data.Dokumentliste.ContentReference.Urls.ContentUrl[1].Url;
-//  $urlPdf = item.Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url;
-//  $urlDoc = item.Data.Dokumentliste.ContentReference.Urls.ContentUrl[3].Url;
-//}

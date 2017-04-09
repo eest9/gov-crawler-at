@@ -3,11 +3,8 @@
 .contentBlock > h1,
 .contentBlock > h2,
 .contextbox > h1,
-.contextbox > h2
+.contextbox > h2,
+h1.panel
 {
   font-size: 1.5em;
-  border-top: 1px;
-  border-bottom: 1px;
-  border-style: solid none;
-  border-color: lightgrey;
 }
