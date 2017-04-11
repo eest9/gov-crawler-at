@@ -1,10 +1,44 @@
+/* standard */
 .article > h1,
 .article > h2,
 .contentBlock > h1,
 .contentBlock > h2,
 .contextbox > h1,
 .contextbox > h2,
-h1.list-title
-{
+h1.list-title {
   font-size: 1.5em;
+}
+
+img.load {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 20px;
+}
+
+/* List fixes */
+.panel > ul.list-group {
+  padding: 15px 0;
+}
+
+.panel li.list-group-item {
+  padding-top: 0;
+}
+
+
+/* concil of ministers */
+
+
+/* consultation bill */
+
+
+/* national assembly */
+div.contentBlock.h_1,
+div.clearFix {
+    display: none !important;
+}
+
+table.tabelle > tbody > tr > td {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
