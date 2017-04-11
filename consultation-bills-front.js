@@ -1,6 +1,7 @@
 $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=EinerWoche", function ( responstJSON ) {
   $($( "#consultation-bills" ).html( function () {
-    var data1 = "";
+    var list1 = "";
+    var data1 = [];
     var item = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
     var pdf;
     for (var i = 0; i < item.length; i++) {
@@ -18,9 +19,8 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
       }
 
       //give all the relevant data about the consultation bills back
-      data1 = data1
-        + "<li class='list-group-item'>"
-        + "<h1 class=list-title>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h1>"
+      data1[i] = "<li class='list-group-item'>"
+        + "<h2 class=list-title>" + item[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h2>"
         + "<p>"
         + item[i].Data.Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
         + item[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
@@ -32,6 +32,9 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
         + "</p>"
         + "</li>";
     }
-    return data1;
+    for (var i = 0; i < data1.length; i++) {
+      list1 = list1 + data1[i];
+    }
+    return list1;
   }));
 });
