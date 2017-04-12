@@ -38,7 +38,11 @@ div.clearFix {
     display: none !important;
 }
 
-table.tabelle > tbody > tr > td {
+td.mail_topic {
+  text-align: center;
+}
+
+/*table.table > tbody > tr > td {
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
-}
+}*/
