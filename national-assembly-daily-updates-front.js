@@ -5,8 +5,15 @@ $.get(national_assembly_daily_updates_url, function ( data1 ) {
   $.get( doURL_YQL(link1), function( data2 ) {
     $($( ".panel.national-assembly-daily-updates h1.panel-title" ).html( $( "body #content h1#inhalt", data2 ).html() ));
     $("img.icon", data2).remove();
-    $("table", data2).removeClass( "tabelle" ).addClass( "table table-striped" );
+    $("table", data2).removeClass( "tabelle" ).addClass( "table" );
     $("td.mail_betreff.mail_datum", data2).removeClass( "mail_betreff mail_datum" ).addClass( "mail_topic info" );
+    $("td.mail_datum", data2).remove();
+/*    $("td", data2).wrapInner( "<li class='list-group-item'></li>" );
+    $("table", data2).wrapInner( "<ul class='list-group'></ul>" );
+    $("ul", data2).unwrap();
+    $("tr", data2).unwrap();
+    $("td", data2).unwrap();
+    $("li", data2).unwrap();*/
     $($( "#national-assembly-daily-updates" ).html( $( "body #content", data2 ).html() ));
   });
 });
