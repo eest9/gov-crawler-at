@@ -14,5 +14,14 @@ $.get(national_assembly_daily_updates_url, function ( data1 ) {
     $("#national-assembly-daily-updates div.contentBlock").wrap("<li class='list-group-item'></li>");
     $("#national-assembly-daily-updates h2").unwrap();
     $("#national-assembly-daily-updates h2").addClass( "list-title" );
+
+    $("#national-assembly-daily-updates a").each( function(i) {
+      $(this).attr("href", function(i, val) {
+        var proof = val.split(":");
+        if ( !(proof[0] == "https") )
+          val = "https://parlament.gv.at" + val;
+        return val;
+      });
+    });
   });
 });
