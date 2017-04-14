@@ -27,7 +27,7 @@ $.get( concil_of_ministers_url, function( data1 ) {
 
       var report_topic_index;
       $("#council-of-ministers-reports p").each( function() {});
-      $(this).insertAfter( $("#council-of-ministers-reports p").eq( pos ) );
+      $(this).appendTo( $("#council-of-ministers-reports li").eq( pos ) );
     });
 
     $("#council-of-ministers-reports a").after("<br>");
