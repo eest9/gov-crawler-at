@@ -11,7 +11,9 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
       if ($.isArray(bill[i].Data.Dokumentliste.ContentReference)) {
         for (var x = 0; x < bill[i].Data.Dokumentliste.ContentReference.length; x++) {
           if (bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2]) {
-              pdf = pdf + "<a href='" + bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + bill[i].Data.Dokumentliste.ContentReference[x].Name + " (PDF)</a><br/>";
+            document_name = bill[i].Data.Dokumentliste.ContentReference[x].Name;
+            document_name = document_name.replace( /_/g , " ");
+            pdf = pdf + "<a href='" + bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + document_name + " (PDF)</a><br/>";
           }
         }
       } else {
