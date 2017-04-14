@@ -27,6 +27,9 @@ img.load {
 
 
 /* concil of ministers */
+#council-of-ministers-reports > li {
+  padding-top: 20px;
+}
 
 
 /* consultation bill */
