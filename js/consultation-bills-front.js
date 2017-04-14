@@ -4,6 +4,7 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
     var data1 = [];
     var bill = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
     var pdf;
+    var startdate = [];
     for (var i = 0; i < bill.length; i++) {
 
       //get the attached PDF Files
@@ -33,10 +34,23 @@ $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&ImRisSeit=Eine
         + pdf
         + "</p>"
         + "</li>";
+      startdate[i] = bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist;
     }
-    for (var i = 0; i < data1.length; i++) {
-      list1 = list1 + data1[i];
+
+    //sort the bills
+    var temp_list = [];
+    for (var j = 0; j < startdate.length; j++)
+      temp_list.push({'date': startdate[j], 'value': data1[j]});
+    temp_list.sort(function(a, b) {
+      return ((a.date > b.date) ? -1 : ((a.date == b.date) ? 0 : 1));
+    });
+    for (var k = 0; k < temp_list.length; k++) {
+      startdate[k] = temp_list[k].date;
+      data1[k] = temp_list[k].value;
     }
+
+    list1 = (data1.toString()).replace( />,</g , "><");
+
     return list1;
   }));
 });
