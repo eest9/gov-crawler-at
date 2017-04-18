@@ -16,6 +16,10 @@ img.load {
   height: 20px;
 }
 
+.reload {
+  float: right;
+}
+
 /* List fixes */
 .panel > ul.list-group {
   padding: 15px 0;
