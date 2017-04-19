@@ -4,40 +4,43 @@ function consultation_bills_front() {
     $($( "#consultation-bills" ).html( function () {
       var list1 = "";
       var data1 = [];
-      var bill = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
+      var mfa = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
       var pdf;
       var startdate = [];
+
+      var bill = Object.values(mfa);
+
 
       for (var i = 0; i < bill.length; i++) {
 
         //get the attached PDF Files
         pdf = "";
-        if ($.isArray(bill[i].Data.Dokumentliste.ContentReference)) {
-          for (var x = 0; x < bill[i].Data.Dokumentliste.ContentReference.length; x++) {
-            if (bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2]) {
-              document_name = bill[i].Data.Dokumentliste.ContentReference[x].Name;
+        if ($.isArray(bill[i].Dokumentliste.ContentReference)) {
+          for (var x = 0; x < bill[i].Dokumentliste.ContentReference.length; x++) {
+            if (bill[i].Dokumentliste.ContentReference[x].Urls.ContentUrl[2]) {
+              document_name = bill[i].Dokumentliste.ContentReference[x].Name;
               document_name = document_name.replace( /_/g , " ");
-              pdf = pdf + "<a href='" + bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + document_name + " (PDF)</a><br/>";
+              pdf = pdf + "<a href='" + bill[i].Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + document_name + " (PDF)</a><br/>";
             }
           }
         } else {
-            pdf = "<a href='" + bill[i].Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "'>" + bill[i].Data.Dokumentliste.ContentReference.Name + " (PDF)</a><br/>";
+            pdf = "<a href='" + bill[i].Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "'>" + bill[i].Dokumentliste.ContentReference.Name + " (PDF)</a><br/>";
         }
 
         //give all the relevant data about the consultation bills back
         data1[i] = "<li class='list-group-item'>"
-          + "<h2 class=list-title>" + bill[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h2>"
+          + "<h2 class=list-title>" + bill[i].Metadaten.Bundesgesetzblaetter.Kurztitel + "</h2>"
           + "<p>"
-          + bill[i].Data.Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
-          + bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
+          + bill[i].Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
+          + bill[i].Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
           + "</p><p>"
-          + "Begin: " + bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist + "<br/>"
-          + "Ende: " + bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EndeBegutachtungsfrist
+          + "Begin: " + bill[i].Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist + "<br/>"
+          + "Ende: " + bill[i].Metadaten.Bundesgesetzblaetter.Begut.EndeBegutachtungsfrist
           + "</p><p>"
           + pdf
           + "</p>"
           + "</li>";
-        startdate[i] = bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist;
+        startdate[i] = bill[i].Metadaten.Bundesgesetzblaetter.Begut.BeginnBegutachtungsfrist;
       }
 
       //sort the bills
