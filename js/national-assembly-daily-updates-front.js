@@ -6,7 +6,7 @@ function national_assembly_daily_updates_front() {
     var link1 = $( "channel guid", data1 ).first().html();
     $.get( doURL_YQL(link1), function( data2 ) {
       $($( ".panel.national-assembly-daily-updates h1.panel-title" ).html( $( "body #content h1#inhalt", data2 ).html() ));
-      $("img.icon", data2).remove();
+      $("img", data2).remove();
       $("table", data2).removeClass( "tabelle" ).addClass( "table" );
       $("td.mail_betreff.mail_datum", data2).removeClass( "mail_betreff mail_datum" ).addClass( "mail_topic info" );
       $("td.mail_datum", data2).remove();

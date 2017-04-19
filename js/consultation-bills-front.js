@@ -7,6 +7,7 @@ function consultation_bills_front() {
       var bill = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
       var pdf;
       var startdate = [];
+
       for (var i = 0; i < bill.length; i++) {
 
         //get the attached PDF Files
