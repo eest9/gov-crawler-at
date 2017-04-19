@@ -8,8 +8,8 @@ function consultation_bills_front() {
       var pdf;
       var startdate = [];
 
-      var bill = Object.values(mfa);
 
+      var bill = Object.values(mfa);
 
       for (var i = 0; i < bill.length; i++) {
 
