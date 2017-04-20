@@ -14,7 +14,7 @@ function consultation_bills_front() {
 
       //get the bills
       var bill = Object.values(responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference);
-      
+
       //bugfix if there is only one bill
       if ( typeof(bill[0].Data) == 'undefined' )
         bill[0].Data = bill[0];
@@ -28,11 +28,11 @@ function consultation_bills_front() {
             if (bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2]) {
               document_name = bill[i].Data.Dokumentliste.ContentReference[x].Name;
               document_name = document_name.replace( /_/g , " ");
-              pdf = pdf + "<a href='" + bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "'>" + document_name + " (PDF)</a><br/>";
+              pdf = pdf + "<a href='" + bill[i].Data.Dokumentliste.ContentReference[x].Urls.ContentUrl[2].Url + "' target='_blank'>" + document_name + " (PDF)</a><br/>";
             }
           }
         } else {
-            pdf = "<a href='" + bill[i].Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "'>" + bill[i].Dokumentliste.ContentReference.Name + " (PDF)</a><br/>";
+            pdf = "<a href='" + bill[i].Data.Dokumentliste.ContentReference.Urls.ContentUrl[2].Url + "' target='_blank'>" + bill[i].Dokumentliste.ContentReference.Name + " (PDF)</a><br/>";
         }
 
         //give all the relevant data about the consultation bills back

@@ -33,6 +33,7 @@ function concil_of_ministers_report_front() {
       });
 
       $("#council-of-ministers-reports a").after("<br>");
+      $("#council-of-ministers-reports a").attr("target","_blank");
       $("#council-of-ministers-reports ul").remove();
 
     });
