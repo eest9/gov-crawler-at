@@ -12,7 +12,12 @@ function consultation_bills_front() {
       var pdf;
       var startdate = [];
 
+      //get the bills
       var bill = Object.values(responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference);
+      
+      //bugfix if there is only one bill
+      if ( typeof(bill[0].Data) == 'undefined' )
+        bill[0].Data = bill[0];
 
       for (var i = 0; i < bill.length; i++) {
 
