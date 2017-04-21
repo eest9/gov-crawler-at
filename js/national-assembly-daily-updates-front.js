@@ -28,3 +28,5 @@ function national_assembly_daily_updates_front() {
     });
   });
 };
+
+national_assembly_daily_updates_front();

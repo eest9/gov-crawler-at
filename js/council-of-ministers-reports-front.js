@@ -39,3 +39,5 @@ function concil_of_ministers_report_front() {
     });
   });
 };
+
+concil_of_ministers_report_front();

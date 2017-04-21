@@ -71,3 +71,5 @@ function consultation_bills_front() {
     }));
   });
 };
+
+consultation_bills_front();
