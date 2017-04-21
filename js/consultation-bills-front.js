@@ -13,11 +13,12 @@ function consultation_bills_front() {
       var startdate = [];
 
       //get the bills
-      var bill = Object.values(responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference);
+      var bill = responstJSON.OgdSearchResult.OgdDocumentResults.OgdDocumentReference;
 
       //bugfix if there is only one bill
-      if ( typeof(bill[0].Data) == 'undefined' )
-        bill[0].Data = bill[0];
+      if ( typeof(bill[0]) == 'undefined' ) {
+        bill[0].Data = Object.values(bill);
+      }
 
       for (var i = 0; i < bill.length; i++) {
 
@@ -38,6 +39,7 @@ function consultation_bills_front() {
         //give all the relevant data about the consultation bills back
         data1[i] = "<li class='list-group-item'>"
           + "<h2 class=list-title>" + bill[i].Data.Metadaten.Bundesgesetzblaetter.Kurztitel + "</h2>"
+          + "<p><a href='" + bill[i].Data.Metadaten.Allgemein.DokumentUrl + "' target='_blank'>Im RIS abrufen &#x1f517;</a></p>"
           + "<p>"
           + bill[i].Data.Metadaten.Bundesgesetzblaetter.Titel + "<br/>"
           + bill[i].Data.Metadaten.Bundesgesetzblaetter.Begut.EinbringendeStelle + "<br/>"
