@@ -32,7 +32,7 @@ function concil_of_ministers_report_front() {
         var positions_of_topics = [];
 
         $("#council-of-ministers-reports li p").each( function(ii) {
-          var position_of_topic = ($("#council-of-ministers-reports li p").eq(ii).text()).split(".");
+          var position_of_topic = ($(this).text()).split(".");
           positions_of_topics[position_of_topic[0]] = ii;
         });
 
