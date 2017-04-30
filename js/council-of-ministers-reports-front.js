@@ -13,23 +13,32 @@ function concil_of_ministers_report_front() {
 
       $("#council-of-ministers-reports a").each( function(i) {
         var report_attachement_part = ($("#council-of-ministers-reports a").eq(i).text()).split("/");
-        var pos = 0;
+        var position_of_attachement = 0;
         if ( report_attachement_part.length > 1 ) {
           var report_attachement_index = ((report_attachement_part[1]).split(" "))[0];
           report_attachement_index = (report_attachement_index.split("."))[0];
           report_attachement_index = (report_attachement_index.split(","))[0];
           if ( !isNaN( Number(report_attachement_index) )) {
-            pos = report_attachement_index;
+            position_of_attachement = report_attachement_index;
           } else {
-            pos = 0;
+            position_of_attachement = 0;
           }
         } else {
-          pos = 2;
+          position_of_attachement = 2;
         }
 
         var report_topic_index;
         $("#council-of-ministers-reports p").each( function() {});
-        $(this).appendTo( $("#council-of-ministers-reports li").eq( pos ) );
+        var positions_of_topics = [];
+
+        $("#council-of-ministers-reports li p").each( function(ii) {
+          var position_of_topic = ($("#council-of-ministers-reports li p").eq(ii).text()).split(".");
+          positions_of_topics[position_of_topic[0]] = ii;
+        });
+
+        //$(this).appendTo( $("#council-of-ministers-reports li").eq( position_of_attachement ) );
+        $(this).appendTo( $("#council-of-ministers-reports li").eq( positions_of_topics[position_of_attachement] ) );
+
       });
 
       $("#council-of-ministers-reports a").after("<br>");
