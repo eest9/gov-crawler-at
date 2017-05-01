@@ -11,6 +11,15 @@ function concil_of_ministers_report_front() {
       $( "#council-of-ministers-reports" ).html( $( "p", report_raw).unwrap() ).append($( "ul", report_raw).unwrap());
       $("#council-of-ministers-reports p").wrap("<li class='list-group-item'></li>")
 
+      var report_topic_index;
+      $("#council-of-ministers-reports p").each( function() {});
+      var positions_of_topics = [];
+
+      $("#council-of-ministers-reports li p").each( function(ii) {
+        var position_of_topic = ($(this).text()).split(".");
+        positions_of_topics[position_of_topic[0]] = ii;
+      });
+
       $("#council-of-ministers-reports a").each( function(i) {
         var report_attachement_part = ($("#council-of-ministers-reports a").eq(i).text()).split("/");
         var position_of_attachement = 0;
@@ -26,15 +35,6 @@ function concil_of_ministers_report_front() {
         } else {
           position_of_attachement = 2;
         }
-
-        var report_topic_index;
-        $("#council-of-ministers-reports p").each( function() {});
-        var positions_of_topics = [];
-
-        $("#council-of-ministers-reports li p").each( function(ii) {
-          var position_of_topic = ($(this).text()).split(".");
-          positions_of_topics[position_of_topic[0]] = ii;
-        });
 
         //$(this).appendTo( $("#council-of-ministers-reports li").eq( position_of_attachement ) );
         $(this).appendTo( $("#council-of-ministers-reports li").eq( positions_of_topics[position_of_attachement] ) );
