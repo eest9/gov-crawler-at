@@ -30,10 +30,17 @@ function concil_of_ministers_report_front() {
           if ( !isNaN( Number(report_attachement_index) )) {
             position_of_attachement = report_attachement_index;
           } else {
-            position_of_attachement = 0;
+            position_of_attachement = 1;
           }
         } else {
-          position_of_attachement = 2;
+          var report_attachement_index = (report_attachement_part[0]).split(" ");
+          if ( report_attachement_index[0] == 'Mitteilungen') {
+            position_of_attachement = 3;
+          } else if ( (report_attachement_index[2].split(","))[0] == 'Tagesordnung') {
+            position_of_attachement = 2;
+          } else {
+            position_of_attachement = 1;
+          }
         }
 
         //$(this).appendTo( $("#council-of-ministers-reports li").eq( position_of_attachement ) );
