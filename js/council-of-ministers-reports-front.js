@@ -25,7 +25,7 @@ function concil_of_ministers_report_front() {
           var report_attachement_index = ((report_attachement_part[1]).split(" "))[0];
           report_attachement_index = (report_attachement_index.split("."))[0];
           report_attachement_index = (report_attachement_index.split(","))[0];
-          if ( !isNaN( Number(report_attachement_index) )) {
+          if ( (!isNaN( Number(report_attachement_index) )) && ( Number(report_attachement_index) < positions_of_topics.length ) ) {
             position_of_attachement = report_attachement_index;
           } else {
             position_of_attachement = 1;
