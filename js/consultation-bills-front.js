@@ -5,7 +5,7 @@ function consultation_bills_front() {
   day = day.toISOString();
   day = day.split("T");
 
-  $.get( RIS_appiUrl + "Bundesgesetzblaetter" + "?Application=Begut&InBegutachtungAm=" + day[0], function ( responstJSON ) {
+  $.get( RIS_appiUrl + "bundesgesetzblaetter" + "?Applikation=Begut&InBegutachtungAm=" + day[0], function ( responstJSON ) {
     $($( "#consultation-bills" ).html( function () {
       var list1 = "";
       var data1 = [];
